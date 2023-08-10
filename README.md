@@ -1,2 +1,2 @@
 # biologics
-Analysis of biologic medicines inclduing for psoriasis and macular degeneration
+Analysis of biologic medicines including for psoriasis and macular degeneration
