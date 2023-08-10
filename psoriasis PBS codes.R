@@ -4,6 +4,9 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 
+
+antidep_atc <- "N06A" #ATC code for antidepressants
+
 med_list <- c("ADALIMUMAB","ETANERCEPT","GUSELKUMAB","INFLIXIMAB",
               "IXEKIZUMAB","RISANKIZUMAB","SECUKINUMAB","TILDRAKIZUMAB","USTEKINUMAB")
 
@@ -34,5 +37,11 @@ cpp_codes <- psoriasis_meds %>%
 pa_codes <- psoriasis_meds %>% 
   filter(pa==1) %>%
   pull(PBS_ITM_CDE) %>% unique()
+
+antidep_meds <- pbs_files %>% 
+  filter(grepl(antidep_atc, PBS_ATC, ignore.case = T)) %>%
+  select(PBS_ATC, DRUG_NAME, PBS_ITM_CDE) %>% 
+  unique() %>%
+  arrange(DRUG_NAME)
 
 
